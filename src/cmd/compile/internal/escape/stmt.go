@@ -87,6 +87,15 @@ func (e *escape) stmt(n ir.Node) {
 		e.block(n.Body)
 		e.loopDepth--
 
+	case ir.OUNTIL:
+		n := n.(*ir.UntilStmt)
+		base.Assert(!n.DistinctVars) // Should all be rewritten before escape analysis // RILEY DIFFERS
+		e.loopDepth++
+		e.discard(n.Cond)
+		e.stmt(n.Post) // RILEY DIFFERS
+		e.block(n.Body)
+		e.loopDepth--
+
 	case ir.ORANGE:
 		// for Key, Value = range X { Body }
 		n := n.(*ir.RangeStmt)

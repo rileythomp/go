@@ -236,6 +236,27 @@ func NewForStmt(pos src.XPos, init Node, cond, post Node, body []Node, distinctV
 	return n
 }
 
+type UntilStmt struct {
+	miniStmt
+	Label        *types.Sym
+	Cond         Node
+	Post         Node // RILEY DIFFERS
+	Body         Nodes
+	DistinctVars bool // RILEY DIFFERS
+}
+
+func NewUntilStmt(pos src.XPos, init Node, cond, post Node, body []Node, distinctVars bool) *UntilStmt { // RILEY DIFFERS
+	n := &UntilStmt{Cond: cond, Post: post} // RILEY DIFFERS
+	n.pos = pos
+	n.op = OUNTIL
+	if init != nil {
+		n.init = []Node{init}
+	}
+	n.Body = body
+	n.DistinctVars = distinctVars // RILEY DIFFERS
+	return n
+}
+
 // A GoDeferStmt is a go or defer statement: go Call / defer Call.
 //
 // The two opcodes use a single syntax because the implementations

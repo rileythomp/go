@@ -49,6 +49,7 @@ var OpNames = []string{
 	OEQ:               "==",
 	OFALL:             "fallthrough",
 	OFOR:              "for",
+	OUNTIL:            "until",
 	OGE:               ">=",
 	OGOTO:             "goto",
 	OGT:               ">",
@@ -427,6 +428,35 @@ func stmtFmt(n Node, s fmt.State) {
 		}
 
 		if n.Post != nil {
+			fmt.Fprintf(s, "; %v", n.Post)
+		} else if simpleinit {
+			fmt.Fprint(s, ";")
+		}
+
+		fmt.Fprintf(s, " { %v }", n.Body)
+
+	case OUNTIL:
+		n := n.(*UntilStmt)
+		if !exportFormat { // TODO maybe only if FmtShort, same below
+			fmt.Fprintf(s, "until loop")
+			break
+		}
+
+		fmt.Fprint(s, "until")
+		if n.DistinctVars { // RILEY DIFFERS
+			fmt.Fprint(s, " /* distinct */")
+		}
+		if simpleinit {
+			fmt.Fprintf(s, " %v;", n.Init()[0])
+		} else if n.Post != nil {
+			fmt.Fprint(s, " ;")
+		}
+
+		if n.Cond != nil {
+			fmt.Fprintf(s, " %v", n.Cond)
+		}
+
+		if n.Post != nil { // RILEY DIFFERS
 			fmt.Fprintf(s, "; %v", n.Post)
 		} else if simpleinit {
 			fmt.Fprint(s, ";")

@@ -2290,6 +2290,22 @@ func (p *parser) forStmt() Stmt {
 	return s
 }
 
+func (p *parser) untilStmt() Stmt {
+	if trace {
+		defer p.trace("untilStmt")()
+	}
+
+	s := new(UntilStmt)
+	s.pos = p.pos()
+
+	s.Init, s.Cond, s.Post = p.header(_Until) // RILEY DIFFERS
+	s.Body = p.blockStmt("until clause")
+
+	// Fdump(os.Stderr, s)
+
+	return s
+}
+
 func (p *parser) header(keyword token) (init SimpleStmt, cond Expr, post SimpleStmt) {
 	p.want(keyword)
 
@@ -2348,6 +2364,21 @@ func (p *parser) header(keyword token) (init SimpleStmt, cond Expr, post SimpleS
 				post = p.simpleStmt(nil, 0 /* range not permitted */)
 				if a, _ := post.(*AssignStmt); a != nil && a.Op == Def {
 					p.syntaxErrorAt(a.Pos(), "cannot declare in post statement of for loop")
+				}
+			}
+		} else if keyword == _Until { // RILEY DIFFERS
+			if p.tok != _Semi {
+				if p.tok == _Lbrace {
+					p.syntaxError("expected until loop condition")
+					goto done
+				}
+				condStmt = p.simpleStmt(nil, 0 /* range not permitted */)
+			}
+			p.want(_Semi)
+			if p.tok != _Lbrace {
+				post = p.simpleStmt(nil, 0 /* range not permitted */)
+				if a, _ := post.(*AssignStmt); a != nil && a.Op == Def {
+					p.syntaxErrorAt(a.Pos(), "cannot declare in post statement until for loop")
 				}
 			}
 		} else if p.tok != _Lbrace {
@@ -2594,6 +2625,9 @@ func (p *parser) stmtOrNil() Stmt {
 
 	case _For:
 		return p.forStmt()
+
+	case _Until:
+		return p.untilStmt()
 
 	case _Switch:
 		return p.switchStmt()

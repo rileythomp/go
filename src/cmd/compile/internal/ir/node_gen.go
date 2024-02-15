@@ -1699,6 +1699,49 @@ func (n *UnaryExpr) editChildrenWithHidden(edit func(Node) Node) {
 	}
 }
 
+func (n *UntilStmt) Format(s fmt.State, verb rune) { fmtNode(n, s, verb) }
+func (n *UntilStmt) copy() Node {
+	c := *n
+	c.init = copyNodes(c.init)
+	c.Body = copyNodes(c.Body)
+	return &c
+}
+func (n *UntilStmt) doChildren(do func(Node) bool) bool {
+	if doNodes(n.init, do) {
+		return true
+	}
+	if n.Cond != nil && do(n.Cond) {
+		return true
+	}
+	if n.Post != nil && do(n.Post) {
+		return true
+	}
+	if doNodes(n.Body, do) {
+		return true
+	}
+	return false
+}
+func (n *UntilStmt) editChildren(edit func(Node) Node) {
+	editNodes(n.init, edit)
+	if n.Cond != nil {
+		n.Cond = edit(n.Cond).(Node)
+	}
+	if n.Post != nil {
+		n.Post = edit(n.Post).(Node)
+	}
+	editNodes(n.Body, edit)
+}
+func (n *UntilStmt) editChildrenWithHidden(edit func(Node) Node) {
+	editNodes(n.init, edit)
+	if n.Cond != nil {
+		n.Cond = edit(n.Cond).(Node)
+	}
+	if n.Post != nil {
+		n.Post = edit(n.Post).(Node)
+	}
+	editNodes(n.Body, edit)
+}
+
 func (n *typeNode) Format(s fmt.State, verb rune) { fmtNode(n, s, verb) }
 func (n *typeNode) copy() Node {
 	c := *n

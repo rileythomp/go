@@ -265,6 +265,7 @@ const (
 	ODEFER    // defer Call
 	OFALL     // fallthrough
 	OFOR      // for Init; Cond; Post { Body }
+	OUNTIL    // until Init; Cond; Post { Body }
 	OGOTO     // goto Label
 	OIF       // if Init; Cond { Then } else { Else }
 	OLABEL    // Label:
