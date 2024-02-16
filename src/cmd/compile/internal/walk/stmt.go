@@ -200,13 +200,15 @@ func walkUntil(n *ir.UntilStmt) ir.Node {
 	if n.Cond != nil {
 		init := ir.TakeInit(n.Cond)
 		walkStmtList(init)
-		n.Cond = ir.NewUnaryExpr(base.Pos, ir.ONOT, walkExpr(n.Cond, &init))
+		// n.Cond = ir.NewUnaryExpr(base.Pos, ir.ONOT, walkExpr(n.Cond, &init)) // NO SSA
+		n.Cond = walkExpr(n.Cond, &init) // SSA
 		n.Cond = ir.InitExpr(init, n.Cond)
 	}
 
 	n.Post = walkStmt(n.Post) // RILEY DIFFERS
 	walkStmtList(n.Body)
-	return ir.NewForStmt(n.Pos(), nil, n.Cond, n.Post, n.Body, n.DistinctVars) // RILEY DIFFERS
+	// return ir.NewForStmt(n.Pos(), nil, n.Cond, n.Post, n.Body, n.DistinctVars) // RILEY DIFFERS // NO SSA
+	return n
 }
 
 // validGoDeferCall reports whether call is a valid call to appear in

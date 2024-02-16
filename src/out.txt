@@ -1,0 +1,189 @@
+# command-line-arguments
+dumped SSA for useuntil,1 to ./ssa.html
+main.useuntil STEXT size=116 args=0x0 locals=0x48 funcid=0x0 align=0x0
+	0x0000 00000 (/home/rileythomp/github/go/src/example.go:5)	TEXT	main.useuntil(SB), ABIInternal, $72-0
+	0x0000 00000 (/home/rileythomp/github/go/src/example.go:5)	CMPQ	SP, 16(R14)
+	0x0004 00004 (/home/rileythomp/github/go/src/example.go:5)	PCDATA	$0, $-2
+	0x0004 00004 (/home/rileythomp/github/go/src/example.go:5)	JLS	109
+	0x0006 00006 (/home/rileythomp/github/go/src/example.go:5)	PCDATA	$0, $-1
+	0x0006 00006 (/home/rileythomp/github/go/src/example.go:5)	PUSHQ	BP
+	0x0007 00007 (/home/rileythomp/github/go/src/example.go:5)	MOVQ	SP, BP
+	0x000a 00010 (/home/rileythomp/github/go/src/example.go:5)	SUBQ	$64, SP
+	0x000e 00014 (/home/rileythomp/github/go/src/example.go:5)	FUNCDATA	$0, gclocals·g2BeySu+wFnoycgXfElmcg==(SB)
+	0x000e 00014 (/home/rileythomp/github/go/src/example.go:5)	FUNCDATA	$1, gclocals·EaPwxsZ75yY1hHMVZLmk6g==(SB)
+	0x000e 00014 (/home/rileythomp/github/go/src/example.go:5)	FUNCDATA	$2, main.useuntil.stkobj(SB)
+	0x000e 00014 (/home/rileythomp/github/go/src/example.go:5)	MOVL	$4, AX
+	0x0013 00019 (/home/rileythomp/github/go/src/example.go:6)	JMP	98
+	0x0015 00021 (/home/rileythomp/github/go/src/example.go:6)	LEAQ	-1(AX), DX
+	0x0019 00025 (/home/rileythomp/github/go/src/example.go:6)	MOVQ	DX, main.i+40(SP)
+	0x001e 00030 (/home/rileythomp/github/go/src/example.go:7)	XCHGL	AX, AX
+	0x001f 00031 (/home/rileythomp/github/go/src/example.go:12)	MOVUPS	X15, main..autotmp_9+48(SP)
+	0x0025 00037 (/home/rileythomp/github/go/src/example.go:12)	LEAQ	type:string(SB), R8
+	0x002c 00044 (/home/rileythomp/github/go/src/example.go:12)	MOVQ	R8, main..autotmp_9+48(SP)
+	0x0031 00049 (/home/rileythomp/github/go/src/example.go:12)	LEAQ	main..stmp_0(SB), R9
+	0x0038 00056 (/home/rileythomp/github/go/src/example.go:12)	MOVQ	R9, main..autotmp_9+56(SP)
+	0x003d 00061 (/home/rileythomp/github/go/src/fmt/print.go:314)	MOVQ	os.Stdout(SB), BX
+	0x0044 00068 (<unknown line number>)	NOP
+	0x0044 00068 (/home/rileythomp/github/go/src/fmt/print.go:314)	LEAQ	go:itab.*os.File,io.Writer(SB), AX
+	0x004b 00075 (/home/rileythomp/github/go/src/fmt/print.go:314)	LEAQ	main..autotmp_9+48(SP), CX
+	0x0050 00080 (/home/rileythomp/github/go/src/fmt/print.go:314)	MOVL	$1, DI
+	0x0055 00085 (/home/rileythomp/github/go/src/fmt/print.go:314)	MOVQ	DI, SI
+	0x0058 00088 (/home/rileythomp/github/go/src/fmt/print.go:314)	PCDATA	$1, $0
+	0x0058 00088 (/home/rileythomp/github/go/src/fmt/print.go:314)	CALL	fmt.Fprintln(SB)
+	0x005d 00093 (/home/rileythomp/github/go/src/example.go:6)	MOVQ	main.i+40(SP), AX
+	0x0062 00098 (/home/rileythomp/github/go/src/example.go:6)	TESTQ	AX, AX
+	0x0065 00101 (/home/rileythomp/github/go/src/example.go:6)	JNE	21
+	0x0067 00103 (/home/rileythomp/github/go/src/example.go:9)	ADDQ	$64, SP
+	0x006b 00107 (/home/rileythomp/github/go/src/example.go:9)	POPQ	BP
+	0x006c 00108 (/home/rileythomp/github/go/src/example.go:9)	RET
+	0x006d 00109 (/home/rileythomp/github/go/src/example.go:9)	NOP
+	0x006d 00109 (/home/rileythomp/github/go/src/example.go:5)	PCDATA	$1, $-1
+	0x006d 00109 (/home/rileythomp/github/go/src/example.go:5)	PCDATA	$0, $-2
+	0x006d 00109 (/home/rileythomp/github/go/src/example.go:5)	CALL	runtime.morestack_noctxt(SB)
+	0x0072 00114 (/home/rileythomp/github/go/src/example.go:5)	PCDATA	$0, $-1
+	0x0072 00114 (/home/rileythomp/github/go/src/example.go:5)	JMP	0
+	0x0000 49 3b 66 10 76 67 55 48 89 e5 48 83 ec 40 b8 04  I;f.vgUH..H..@..
+	0x0010 00 00 00 eb 4d 48 8d 50 ff 48 89 54 24 28 90 44  ....MH.P.H.T$(.D
+	0x0020 0f 11 7c 24 30 4c 8d 05 00 00 00 00 4c 89 44 24  ..|$0L......L.D$
+	0x0030 30 4c 8d 0d 00 00 00 00 4c 89 4c 24 38 48 8b 1d  0L......L.L$8H..
+	0x0040 00 00 00 00 48 8d 05 00 00 00 00 48 8d 4c 24 30  ....H......H.L$0
+	0x0050 bf 01 00 00 00 48 89 fe e8 00 00 00 00 48 8b 44  .....H.......H.D
+	0x0060 24 28 48 85 c0 75 ae 48 83 c4 40 5d c3 e8 00 00  $(H..u.H..@]....
+	0x0070 00 00 eb 8c                                      ....
+	rel 2+0 t=R_USEIFACE type:string+0
+	rel 2+0 t=R_USEIFACE type:*os.File+0
+	rel 40+4 t=R_PCREL type:string+0
+	rel 52+4 t=R_PCREL main..stmp_0+0
+	rel 64+4 t=R_PCREL os.Stdout+0
+	rel 71+4 t=R_PCREL go:itab.*os.File,io.Writer+0
+	rel 89+4 t=R_CALL fmt.Fprintln+0
+	rel 110+4 t=R_CALL runtime.morestack_noctxt+0
+main.sayhi STEXT size=89 args=0x0 locals=0x40 funcid=0x0 align=0x0
+	0x0000 00000 (/home/rileythomp/github/go/src/example.go:11)	TEXT	main.sayhi(SB), ABIInternal, $64-0
+	0x0000 00000 (/home/rileythomp/github/go/src/example.go:11)	CMPQ	SP, 16(R14)
+	0x0004 00004 (/home/rileythomp/github/go/src/example.go:11)	PCDATA	$0, $-2
+	0x0004 00004 (/home/rileythomp/github/go/src/example.go:11)	JLS	82
+	0x0006 00006 (/home/rileythomp/github/go/src/example.go:11)	PCDATA	$0, $-1
+	0x0006 00006 (/home/rileythomp/github/go/src/example.go:11)	PUSHQ	BP
+	0x0007 00007 (/home/rileythomp/github/go/src/example.go:11)	MOVQ	SP, BP
+	0x000a 00010 (/home/rileythomp/github/go/src/example.go:11)	SUBQ	$56, SP
+	0x000e 00014 (/home/rileythomp/github/go/src/example.go:11)	FUNCDATA	$0, gclocals·g2BeySu+wFnoycgXfElmcg==(SB)
+	0x000e 00014 (/home/rileythomp/github/go/src/example.go:11)	FUNCDATA	$1, gclocals·EaPwxsZ75yY1hHMVZLmk6g==(SB)
+	0x000e 00014 (/home/rileythomp/github/go/src/example.go:11)	FUNCDATA	$2, main.sayhi.stkobj(SB)
+	0x000e 00014 (/home/rileythomp/github/go/src/example.go:12)	MOVUPS	X15, main..autotmp_8+40(SP)
+	0x0014 00020 (/home/rileythomp/github/go/src/example.go:12)	LEAQ	type:string(SB), DX
+	0x001b 00027 (/home/rileythomp/github/go/src/example.go:12)	MOVQ	DX, main..autotmp_8+40(SP)
+	0x0020 00032 (/home/rileythomp/github/go/src/example.go:12)	LEAQ	main..stmp_1(SB), DX
+	0x0027 00039 (/home/rileythomp/github/go/src/example.go:12)	MOVQ	DX, main..autotmp_8+48(SP)
+	0x002c 00044 (/home/rileythomp/github/go/src/fmt/print.go:314)	MOVQ	os.Stdout(SB), BX
+	0x0033 00051 (<unknown line number>)	NOP
+	0x0033 00051 (/home/rileythomp/github/go/src/fmt/print.go:314)	LEAQ	go:itab.*os.File,io.Writer(SB), AX
+	0x003a 00058 (/home/rileythomp/github/go/src/fmt/print.go:314)	LEAQ	main..autotmp_8+40(SP), CX
+	0x003f 00063 (/home/rileythomp/github/go/src/fmt/print.go:314)	MOVL	$1, DI
+	0x0044 00068 (/home/rileythomp/github/go/src/fmt/print.go:314)	MOVQ	DI, SI
+	0x0047 00071 (/home/rileythomp/github/go/src/fmt/print.go:314)	PCDATA	$1, $0
+	0x0047 00071 (/home/rileythomp/github/go/src/fmt/print.go:314)	CALL	fmt.Fprintln(SB)
+	0x004c 00076 (/home/rileythomp/github/go/src/example.go:13)	ADDQ	$56, SP
+	0x0050 00080 (/home/rileythomp/github/go/src/example.go:13)	POPQ	BP
+	0x0051 00081 (/home/rileythomp/github/go/src/example.go:13)	RET
+	0x0052 00082 (/home/rileythomp/github/go/src/example.go:13)	NOP
+	0x0052 00082 (/home/rileythomp/github/go/src/example.go:11)	PCDATA	$1, $-1
+	0x0052 00082 (/home/rileythomp/github/go/src/example.go:11)	PCDATA	$0, $-2
+	0x0052 00082 (/home/rileythomp/github/go/src/example.go:11)	CALL	runtime.morestack_noctxt(SB)
+	0x0057 00087 (/home/rileythomp/github/go/src/example.go:11)	PCDATA	$0, $-1
+	0x0057 00087 (/home/rileythomp/github/go/src/example.go:11)	JMP	0
+	0x0000 49 3b 66 10 76 4c 55 48 89 e5 48 83 ec 38 44 0f  I;f.vLUH..H..8D.
+	0x0010 11 7c 24 28 48 8d 15 00 00 00 00 48 89 54 24 28  .|$(H......H.T$(
+	0x0020 48 8d 15 00 00 00 00 48 89 54 24 30 48 8b 1d 00  H......H.T$0H...
+	0x0030 00 00 00 48 8d 05 00 00 00 00 48 8d 4c 24 28 bf  ...H......H.L$(.
+	0x0040 01 00 00 00 48 89 fe e8 00 00 00 00 48 83 c4 38  ....H.......H..8
+	0x0050 5d c3 e8 00 00 00 00 eb a7                       ]........
+	rel 2+0 t=R_USEIFACE type:string+0
+	rel 2+0 t=R_USEIFACE type:*os.File+0
+	rel 23+4 t=R_PCREL type:string+0
+	rel 35+4 t=R_PCREL main..stmp_1+0
+	rel 47+4 t=R_PCREL os.Stdout+0
+	rel 54+4 t=R_PCREL go:itab.*os.File,io.Writer+0
+	rel 72+4 t=R_CALL fmt.Fprintln+0
+	rel 83+4 t=R_CALL runtime.morestack_noctxt+0
+go:cuinfo.producer.main SDWARFCUINFO dupok size=0
+	0x0000 72 65 67 61 62 69                                regabi
+go:cuinfo.packagename.main SDWARFCUINFO dupok size=0
+	0x0000 6d 61 69 6e                                      main
+go:info.fmt.Println$abstract SDWARFABSFCN dupok size=44
+	0x0000 05 66 6d 74 2e 50 72 69 6e 74 6c 6e 00 01 b9 02  .fmt.Println....
+	0x0010 01 13 61 00 00 00 00 00 00 13 6e 00 01 00 00 00  ..a.......n.....
+	0x0020 00 13 65 72 72 00 01 00 00 00 00 00              ..err.......
+	rel 0+0 t=R_USETYPE type:[]interface {}+0
+	rel 0+0 t=R_USETYPE type:error+0
+	rel 0+0 t=R_USETYPE type:int+0
+	rel 21+4 t=R_DWARFSECREF go:info.[]interface {}+0
+	rel 29+4 t=R_DWARFSECREF go:info.int+0
+	rel 39+4 t=R_DWARFSECREF go:info.error+0
+go:itab.*os.File,io.Writer SRODATA dupok size=32
+	0x0000 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0010 5a 22 ee 60 00 00 00 00 00 00 00 00 00 00 00 00  Z".`............
+	rel 0+8 t=R_ADDR type:io.Writer+0
+	rel 8+8 t=R_ADDR type:*os.File+0
+	rel 24+8 t=RelocType(-32767) os.(*File).Write+0
+go:info.main.sayhi$abstract SDWARFABSFCN dupok size=16
+	0x0000 05 6d 61 69 6e 2e 73 61 79 68 69 00 01 0b 01 00  .main.sayhi.....
+main..inittask SNOPTRDATA size=8
+	0x0000 00 00 00 00 00 00 00 00                          ........
+	rel 0+0 t=R_INITORDER fmt..inittask+0
+go:string."hello world" SRODATA dupok size=11
+	0x0000 68 65 6c 6c 6f 20 77 6f 72 6c 64                 hello world
+main..stmp_0 SRODATA static size=16
+	0x0000 00 00 00 00 00 00 00 00 0b 00 00 00 00 00 00 00  ................
+	rel 0+8 t=R_ADDR go:string."hello world"+0
+main..stmp_1 SRODATA static size=16
+	0x0000 00 00 00 00 00 00 00 00 0b 00 00 00 00 00 00 00  ................
+	rel 0+8 t=R_ADDR go:string."hello world"+0
+runtime.nilinterequal·f SRODATA dupok size=8
+	0x0000 00 00 00 00 00 00 00 00                          ........
+	rel 0+8 t=R_ADDR runtime.nilinterequal+0
+runtime.memequal64·f SRODATA dupok size=8
+	0x0000 00 00 00 00 00 00 00 00                          ........
+	rel 0+8 t=R_ADDR runtime.memequal64+0
+runtime.gcbits.0100000000000000 SRODATA dupok size=8
+	0x0000 01 00 00 00 00 00 00 00                          ........
+type:.namedata.*[1]interface {}- SRODATA dupok size=18
+	0x0000 00 10 2a 5b 31 5d 69 6e 74 65 72 66 61 63 65 20  ..*[1]interface 
+	0x0010 7b 7d                                            {}
+type:*[1]interface {} SRODATA dupok size=56
+	0x0000 08 00 00 00 00 00 00 00 08 00 00 00 00 00 00 00  ................
+	0x0010 a8 0e 57 36 08 08 08 36 00 00 00 00 00 00 00 00  ..W6...6........
+	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0030 00 00 00 00 00 00 00 00                          ........
+	rel 24+8 t=R_ADDR runtime.memequal64·f+0
+	rel 32+8 t=R_ADDR runtime.gcbits.0100000000000000+0
+	rel 40+4 t=R_ADDROFF type:.namedata.*[1]interface {}-+0
+	rel 48+8 t=R_ADDR type:[1]interface {}+0
+runtime.gcbits.0200000000000000 SRODATA dupok size=8
+	0x0000 02 00 00 00 00 00 00 00                          ........
+type:[1]interface {} SRODATA dupok size=72
+	0x0000 10 00 00 00 00 00 00 00 10 00 00 00 00 00 00 00  ................
+	0x0010 6e 20 6a 3d 02 08 08 11 00 00 00 00 00 00 00 00  n j=............
+	0x0020 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0030 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+	0x0040 01 00 00 00 00 00 00 00                          ........
+	rel 24+8 t=R_ADDR runtime.nilinterequal·f+0
+	rel 32+8 t=R_ADDR runtime.gcbits.0200000000000000+0
+	rel 40+4 t=R_ADDROFF type:.namedata.*[1]interface {}-+0
+	rel 44+4 t=RelocType(-32763) type:*[1]interface {}+0
+	rel 48+8 t=R_ADDR type:interface {}+0
+	rel 56+8 t=R_ADDR type:[]interface {}+0
+gclocals·g2BeySu+wFnoycgXfElmcg== SRODATA dupok size=8
+	0x0000 01 00 00 00 00 00 00 00                          ........
+gclocals·EaPwxsZ75yY1hHMVZLmk6g== SRODATA dupok size=9
+	0x0000 01 00 00 00 02 00 00 00 00                       .........
+main.useuntil.stkobj SRODATA static size=24
+	0x0000 01 00 00 00 00 00 00 00 f0 ff ff ff 10 00 00 00  ................
+	0x0010 10 00 00 00 00 00 00 00                          ........
+	rel 20+4 t=R_ADDROFF runtime.gcbits.0200000000000000+0
+main.sayhi.stkobj SRODATA static size=24
+	0x0000 01 00 00 00 00 00 00 00 f0 ff ff ff 10 00 00 00  ................
+	0x0010 10 00 00 00 00 00 00 00                          ........
+	rel 20+4 t=R_ADDROFF runtime.gcbits.0200000000000000+0
+# command-line-arguments
+runtime.main_main·f: function main is undeclared in the main package
