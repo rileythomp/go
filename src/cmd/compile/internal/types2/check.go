@@ -404,6 +404,7 @@ func (check *Checker) checkFiles(files []*syntax.File) (err error) {
 	check.packageObjects()
 
 	print("== processDelayed ==")
+	fmt.Println("				START PROCESS DELAYED")
 	check.processDelayed(0) // incl. all functions
 
 	print("== cleanup ==")

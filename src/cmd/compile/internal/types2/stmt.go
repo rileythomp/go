@@ -8,6 +8,7 @@ package types2
 
 import (
 	"cmd/compile/internal/syntax"
+	"fmt"
 	"go/constant"
 	"internal/buildcfg"
 	. "internal/types/errors"
@@ -668,6 +669,7 @@ func (check *Checker) stmt(ctxt stmtContext, s syntax.Stmt) {
 		check.stmt(inner, s.Body)
 
 	case *syntax.UntilStmt:
+		fmt.Println("					2. TYPES2/STMT.GO UNTIL CASE")
 		inner |= breakOk | continueOk
 
 		check.openScope(s, "until")

@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func main() {
-	until i := 3; i == 0; i-- {
-		fmt.Println("until")
+	until i := 9; i == 0; i-- {
+		fmt.Println("loop until", i)
 	}
 }

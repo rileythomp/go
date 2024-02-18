@@ -22,6 +22,7 @@ const tmpstringbufsize = 32
 func Walk(fn *ir.Func) {
 	ir.CurFunc = fn
 	errorsBefore := base.Errors()
+	fmt.Println("		START WALK ORDER")
 	order(fn)
 	if base.Errors() > errorsBefore {
 		return
@@ -38,6 +39,7 @@ func Walk(fn *ir.Func) {
 	if base.Errors() > errorsBefore {
 		return
 	}
+	fmt.Println("		START WALK STMT LIST")
 	walkStmtList(ir.CurFunc.Body)
 	if base.Flag.W != 0 {
 		s := fmt.Sprintf("after walk %v", ir.CurFunc.Sym())

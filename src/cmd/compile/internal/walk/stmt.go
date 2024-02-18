@@ -7,6 +7,7 @@ package walk
 import (
 	"cmd/compile/internal/base"
 	"cmd/compile/internal/ir"
+	"fmt"
 )
 
 // The result of walkStmt MUST be assigned back to n, e.g.
@@ -128,6 +129,7 @@ func walkStmt(n ir.Node) ir.Node {
 		return walkFor(n)
 
 	case ir.OUNTIL:
+		fmt.Println("			10. WALK/STMT.GO UNTIL CASE")
 		n := n.(*ir.UntilStmt)
 		return walkUntil(n)
 

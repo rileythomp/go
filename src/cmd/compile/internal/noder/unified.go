@@ -169,6 +169,7 @@ func unified(m posMap, noders []*noder) {
 	typecheck.HaveInlineBody = unifiedHaveInlineBody
 	pgo.LookupFunc = LookupFunc
 
+	fmt.Println("		START WRITE PKG STUB")
 	data := writePkgStub(m, noders)
 
 	target := typecheck.Target
@@ -179,6 +180,7 @@ func unified(m posMap, noders []*noder) {
 	r := localPkgReader.newReader(pkgbits.RelocMeta, pkgbits.PrivateRootIdx, pkgbits.SyncPrivate)
 	r.pkgInit(types.LocalPkg, target)
 
+	fmt.Println("		START READ BODIES")
 	readBodies(target, false)
 
 	// Check that nothing snuck past typechecking.
@@ -293,10 +295,12 @@ func readBodies(target *ir.Package, duringInlining bool) {
 // writes an export data package stub representing them,
 // and returns the result.
 func writePkgStub(m posMap, noders []*noder) string {
+	fmt.Println("			START TYPE CHECK FILES")
 	pkg, info := checkFiles(m, noders)
 
 	pw := newPkgWriter(m, pkg, info)
 
+	fmt.Println("			START WALK DECLARATIONS")
 	pw.collectDecls(noders)
 
 	publicRootWriter := pw.newWriter(pkgbits.RelocMeta, pkgbits.SyncPublic)
@@ -306,6 +310,7 @@ func writePkgStub(m posMap, noders []*noder) string {
 	assert(privateRootWriter.Idx == pkgbits.PrivateRootIdx)
 
 	{
+		fmt.Println("			START PUBLIC ROOT WRITER")
 		w := publicRootWriter
 		w.pkg(pkg)
 		w.Bool(false) // TODO(mdempsky): Remove; was "has init"
@@ -322,6 +327,7 @@ func writePkgStub(m posMap, noders []*noder) string {
 	}
 
 	{
+		fmt.Println("			START PRIVATE ROOT WRITER")
 		w := privateRootWriter
 		w.pkgInit(noders)
 		w.Flush()
