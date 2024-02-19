@@ -1675,6 +1675,9 @@ func (r *reader) stmt1(tag codeStmt, out *ir.Nodes) ir.Node {
 	case stmtFor:
 		return r.forStmt(label)
 
+	case stmtFour:
+		return r.fourStmt(label)
+
 	case stmtUntil:
 		// fmt.Println("			5. NODER/READER.GO UNTIL CASE")
 		return r.untilStmt(label)
@@ -1804,6 +1807,24 @@ func (r *reader) forStmt(label *types.Sym) ir.Node {
 	}
 
 	stmt := ir.NewForStmt(pos, init, cond, post, body, perLoopVars)
+	stmt.Label = label
+	return stmt
+}
+
+func (r *reader) fourStmt(label *types.Sym) ir.Node {
+	r.Sync(pkgbits.SyncFourStmt)
+
+	r.openScope()
+
+	pos := r.pos()
+	init := r.stmt()
+	cond := r.optExpr()
+	post := r.stmt()
+	body := r.blockStmt()
+	dv := r.Bool()
+	r.closeAnotherScope()
+
+	stmt := ir.NewFourStmt(pos, init, cond, post, body, dv)
 	stmt.Label = label
 	return stmt
 }

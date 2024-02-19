@@ -92,6 +92,15 @@ func (e *escape) stmt(n ir.Node) {
 		e.block(n.Body)
 		e.loopDepth--
 
+	case ir.OFOUR:
+		n := n.(*ir.FourStmt)
+		base.Assert(!n.DistinctVars) // Should all be rewritten before escape analysis
+		e.loopDepth++
+		e.discard(n.Cond)
+		e.stmt(n.Post)
+		e.block(n.Body)
+		e.loopDepth--
+
 	case ir.OUNTIL:
 		// fmt.Println("	8. ESCAPE/STMT.GO ESCAPE UNTIL")
 		n := n.(*ir.UntilStmt)

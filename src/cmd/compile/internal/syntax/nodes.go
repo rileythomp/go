@@ -425,6 +425,14 @@ type (
 		stmt
 	}
 
+	FourStmt struct {
+		Init SimpleStmt
+		Cond Expr
+		Post SimpleStmt
+		Body *BlockStmt
+		stmt
+	}
+
 	UntilStmt struct {
 		Init SimpleStmt // incl. *RangeClause
 		Cond Expr

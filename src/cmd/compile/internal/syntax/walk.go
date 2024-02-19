@@ -280,6 +280,18 @@ func (w walker) node(n Node) {
 		}
 		w.node(n.Body)
 
+	case *FourStmt:
+		if n.Init != nil {
+			w.node(n.Init)
+		}
+		if n.Cond != nil {
+			w.node(n.Cond)
+		}
+		if n.Post != nil {
+			w.node(n.Post)
+		}
+		w.node(n.Body)
+
 	case *UntilStmt:
 		// fmt.Println("				3. SYNTAX/WALK.GO UNTIL CASE")
 		if n.Init != nil {

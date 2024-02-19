@@ -27,6 +27,7 @@ const (
 	stmtIf
 	stmtUnless
 	stmtFor
+	stmtFour
 	stmtUntil
 	stmtSwitch
 	stmtSelect

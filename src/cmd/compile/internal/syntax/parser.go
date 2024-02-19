@@ -315,6 +315,7 @@ const stopset uint64 = 1<<_Break |
 	1<<_Defer |
 	1<<_Fallthrough |
 	1<<_For |
+	1<<_Four |
 	1<<_Go |
 	1<<_Goto |
 	1<<_If |
@@ -2291,6 +2292,20 @@ func (p *parser) forStmt() Stmt {
 	return s
 }
 
+func (p *parser) fourStmt() Stmt {
+	if trace {
+		defer p.trace("fourStmt")()
+	}
+
+	s := new(FourStmt)
+	s.pos = p.pos()
+
+	s.Init, s.Cond, s.Post = p.header(_Four)
+	s.Body = p.blockStmt("four clause")
+
+	return s
+}
+
 func (p *parser) untilStmt() Stmt {
 	if trace {
 		defer p.trace("untilStmt")()
@@ -2368,6 +2383,21 @@ func (p *parser) header(keyword token) (init SimpleStmt, cond Expr, post SimpleS
 				post = p.simpleStmt(nil, 0 /* range not permitted */)
 				if a, _ := post.(*AssignStmt); a != nil && a.Op == Def {
 					p.syntaxErrorAt(a.Pos(), "cannot declare in post statement of for loop")
+				}
+			}
+		} else if keyword == _Four {
+			if p.tok != _Semi {
+				if p.tok == _Lbrace {
+					p.syntaxError("expected four loop condition")
+					goto done
+				}
+				condStmt = p.simpleStmt(nil, 0 /* range not permitted */)
+			}
+			p.want(_Semi)
+			if p.tok != _Lbrace {
+				post = p.simpleStmt(nil, 0 /* range not permitted */)
+				if a, _ := post.(*AssignStmt); a != nil && a.Op == Def {
+					p.syntaxErrorAt(a.Pos(), "cannot declare in post statement of four loop")
 				}
 			}
 		} else if keyword == _Until { // RILEY DIFFERS
@@ -2654,6 +2684,9 @@ func (p *parser) stmtOrNil() Stmt {
 
 	case _For:
 		return p.forStmt()
+
+	case _Four:
+		return p.fourStmt()
 
 	case _Until:
 		// fmt.Println("		1. SYNTAX/PARSER.GO UNTIL CASE")

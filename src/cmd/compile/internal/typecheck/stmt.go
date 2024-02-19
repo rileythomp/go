@@ -198,6 +198,21 @@ func tcFor(n *ir.ForStmt) ir.Node {
 	return n
 }
 
+func tcFour(n *ir.FourStmt) ir.Node {
+	Stmts(n.Init())
+	n.Cond = Expr(n.Cond)
+	n.Cond = DefaultLit(n.Cond, nil)
+	if n.Cond != nil {
+		t := n.Cond.Type()
+		if t != nil && !t.IsBoolean() {
+			base.Errorf("non-bool %L used as for condition", n.Cond)
+		}
+	}
+	n.Post = Stmt(n.Post)
+	Stmts(n.Body)
+	return n
+}
+
 // tcUntil typechecks an OUNTIL node.
 func tcUntil(n *ir.UntilStmt) ir.Node {
 	Stmts(n.Init())
