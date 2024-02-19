@@ -268,6 +268,7 @@ const (
 	OUNTIL    // until Init; Cond; Post { Body }
 	OGOTO     // goto Label
 	OIF       // if Init; Cond { Then } else { Else }
+	OUNLESS   // unless Init; Cond { Then }
 	OLABEL    // Label:
 	OGO       // go Call
 	ORANGE    // for Key, Value = range X { Body }

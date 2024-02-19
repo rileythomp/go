@@ -261,6 +261,13 @@ func (w walker) node(n Node) {
 			w.node(n.Else)
 		}
 
+	case *UnlessStmt:
+		if n.Init != nil {
+			w.node(n.Init)
+		}
+		w.node(n.Cond)
+		w.node(n.Then)
+
 	case *ForStmt:
 		if n.Init != nil {
 			w.node(n.Init)

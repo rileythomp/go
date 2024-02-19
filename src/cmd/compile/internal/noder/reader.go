@@ -1682,6 +1682,9 @@ func (r *reader) stmt1(tag codeStmt, out *ir.Nodes) ir.Node {
 	case stmtIf:
 		return r.ifStmt()
 
+	case stmtUnless:
+		return r.unlessStmt()
+
 	case stmtLabel:
 		pos := r.pos()
 		sym := r.label()
@@ -1855,6 +1858,20 @@ func (r *reader) ifStmt() ir.Node {
 	}
 
 	n := ir.NewIfStmt(pos, cond, then, els)
+	n.SetInit(init)
+	return n
+}
+
+func (r *reader) unlessStmt() ir.Node {
+	r.Sync(pkgbits.SyncUnlessStmt)
+	r.openScope()
+	pos := r.pos()
+	init := r.stmts()
+	cond := r.expr()
+	then := r.blockStmt()
+	r.closeAnotherScope()
+
+	n := ir.NewUnlessStmt(pos, cond, then)
 	n.SetInit(init)
 	return n
 }

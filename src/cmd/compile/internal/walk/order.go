@@ -856,6 +856,14 @@ func (o *orderState) stmt(n ir.Node) {
 		orderBlock(&n.Else, o.free)
 		o.out = append(o.out, n)
 
+	case ir.OUNLESS:
+		n := n.(*ir.UnlessStmt)
+		t := o.markTemp()
+		n.Cond = o.exprInPlace(n.Cond)
+		o.popTemp(t)
+		orderBlock(&n.Body, o.free)
+		o.out = append(o.out, n)
+
 	case ir.ORANGE:
 		// n.Right is the expression being ranged over.
 		// order it, and then make a copy if we need one.

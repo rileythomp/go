@@ -559,6 +559,10 @@ func typecheck1(n ir.Node, top int) ir.Node {
 		n := n.(*ir.IfStmt)
 		return tcIf(n)
 
+	case ir.OUNLESS:
+		n := n.(*ir.UnlessStmt)
+		return tcUnless(n)
+
 	case ir.ORETURN:
 		n := n.(*ir.ReturnStmt)
 		return tcReturn(n)

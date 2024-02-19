@@ -300,6 +300,22 @@ func NewIfStmt(pos src.XPos, cond Node, body, els []Node) *IfStmt {
 	return n
 }
 
+// An UnlessStmt is a return statement: unless Init; Cond { Body }.
+type UnlessStmt struct {
+	miniStmt
+	Cond   Node
+	Body   Nodes
+	Likely bool // code layout hint
+}
+
+func NewUnlessStmt(pos src.XPos, cond Node, body []Node) *UnlessStmt {
+	n := &UnlessStmt{Cond: cond}
+	n.pos = pos
+	n.op = OUNLESS
+	n.Body = body
+	return n
+}
+
 // A JumpTableStmt is used to implement switches. Its semantics are:
 //
 //	tmp := jt.Idx

@@ -57,6 +57,7 @@ const (
 	_Go          // go
 	_Goto        // goto
 	_If          // if
+	_Unless      // unless
 	_Import      // import
 	_Interface   // interface
 	_Map         // map

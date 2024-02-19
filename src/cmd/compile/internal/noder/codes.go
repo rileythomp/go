@@ -25,6 +25,7 @@ const (
 	stmtCall
 	stmtReturn
 	stmtIf
+	stmtUnless
 	stmtFor
 	stmtUntil
 	stmtSwitch

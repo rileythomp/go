@@ -137,6 +137,10 @@ func walkStmt(n ir.Node) ir.Node {
 		n := n.(*ir.IfStmt)
 		return walkIf(n)
 
+	case ir.OUNLESS:
+		n := n.(*ir.UnlessStmt)
+		return walkUnless(n)
+
 	case ir.ORETURN:
 		n := n.(*ir.ReturnStmt)
 		return walkReturn(n)
@@ -248,4 +252,13 @@ func walkIf(n *ir.IfStmt) ir.Node {
 	walkStmtList(n.Body)
 	walkStmtList(n.Else)
 	return n
+}
+
+// walkUnless walks an OUNLESS node.
+func walkUnless(n *ir.UnlessStmt) ir.Node {
+	n.Cond = walkExpr(n.Cond, n.PtrInit())
+	// n.Cond = ir.NewUnaryExpr(n.Pos(), ir.ONOT, walkExpr(n.Cond, n.PtrInit()))
+	walkStmtList(n.Body)
+	return n
+	// return ir.NewIfStmt(n.Pos(), n.Cond, n.Body, []ir.Node{})
 }

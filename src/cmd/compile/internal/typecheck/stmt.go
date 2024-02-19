@@ -412,6 +412,21 @@ func tcIf(n *ir.IfStmt) ir.Node {
 	return n
 }
 
+// tcUnless typechecks an OUNLESS node.
+func tcUnless(n *ir.UnlessStmt) ir.Node {
+	Stmts(n.Init())
+	n.Cond = Expr(n.Cond)
+	n.Cond = DefaultLit(n.Cond, nil)
+	if n.Cond != nil {
+		t := n.Cond.Type()
+		if t != nil && !t.IsBoolean() {
+			base.Errorf("non-bool %L used as unless condition", n.Cond)
+		}
+	}
+	Stmts(n.Body)
+	return n
+}
+
 // range
 func tcRange(n *ir.RangeStmt) {
 	n.X = Expr(n.X)

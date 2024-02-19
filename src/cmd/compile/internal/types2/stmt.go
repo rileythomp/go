@@ -580,6 +580,18 @@ func (check *Checker) stmt(ctxt stmtContext, s syntax.Stmt) {
 			check.error(s.Else, InvalidSyntaxTree, "invalid else branch in if statement")
 		}
 
+	case *syntax.UnlessStmt:
+		check.openScope(s, "unless")
+		defer check.closeScope()
+
+		check.simpleStmt(s.Init)
+		var x operand
+		check.expr(nil, &x, s.Cond)
+		if x.mode != invalid && !allBoolean(x.typ) {
+			check.error(s.Cond, InvalidCond, "non-boolean condition in unless statement")
+		}
+		check.stmt(inner, s.Then)
+
 	case *syntax.SwitchStmt:
 		inner |= breakOk
 		check.openScope(s, "switch")

@@ -1297,6 +1297,10 @@ func (w *writer) stmt1(stmt syntax.Stmt) {
 		w.Code(stmtIf)
 		w.ifStmt(stmt)
 
+	case *syntax.UnlessStmt:
+		w.Code(stmtUnless)
+		w.unlessStmt(stmt)
+
 	case *syntax.LabeledStmt:
 		w.Code(stmtLabel)
 		w.pos(stmt)
@@ -1557,6 +1561,16 @@ func (w *writer) ifStmt(stmt *syntax.IfStmt) {
 	if cond <= 0 {
 		w.stmt(stmt.Else)
 	}
+	w.closeAnotherScope()
+}
+
+func (w *writer) unlessStmt(stmt *syntax.UnlessStmt) {
+	w.Sync(pkgbits.SyncUnlessStmt)
+	w.openScope(stmt.Pos())
+	w.pos(stmt)
+	w.stmt(stmt.Init)
+	w.expr(stmt.Cond)
+	w.blockStmt(stmt.Then)
 	w.closeAnotherScope()
 }
 

@@ -1763,6 +1763,31 @@ func (s *state) stmt(n ir.Node) {
 		}
 		s.startBlock(bEnd)
 
+	case ir.OUNLESS:
+		n := n.(*ir.UnlessStmt)
+
+		bEnd := s.f.NewBlock(ssa.BlockPlain)
+		var likely int8
+		if n.Likely {
+			likely = 1
+		}
+		var bThen *ssa.Block
+		if len(n.Body) != 0 {
+			bThen = s.f.NewBlock(ssa.BlockPlain)
+		} else {
+			bThen = bEnd
+		}
+		s.condBranch(n.Cond, bEnd, bThen, likely)
+
+		if len(n.Body) != 0 {
+			s.startBlock(bThen)
+			s.stmtList(n.Body)
+			if b := s.endBlock(); b != nil {
+				b.AddEdgeTo(bEnd)
+			}
+		}
+		s.startBlock(bEnd)
+
 	case ir.ORETURN:
 		n := n.(*ir.ReturnStmt)
 		s.stmtList(n.Results)
