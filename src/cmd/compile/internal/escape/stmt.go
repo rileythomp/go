@@ -93,7 +93,7 @@ func (e *escape) stmt(n ir.Node) {
 		e.loopDepth--
 
 	case ir.OUNTIL:
-		fmt.Println("	8. ESCAPE/STMT.GO ESCAPE UNTIL")
+		// fmt.Println("	8. ESCAPE/STMT.GO ESCAPE UNTIL")
 		n := n.(*ir.UntilStmt)
 		base.Assert(!n.DistinctVars) // Should all be rewritten before escape analysis // RILEY DIFFERS
 		e.loopDepth++

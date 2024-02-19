@@ -213,7 +213,7 @@ const maxStackSize = 1 << 30
 // and flushes that plist to machine code.
 // worker indicates which of the backend workers is doing the processing.
 func Compile(fn *ir.Func, worker int) {
-	fmt.Println("		START BUILD SSA")
+	// fmt.Println("		START BUILD SSA")
 	f := buildssa(fn, worker)
 	// Note: check arg size to fix issue 25507.
 	if f.Frontend().(*ssafn).stksize >= maxStackSize || f.OwnAux.ArgWidth() >= maxStackSize {
@@ -224,7 +224,7 @@ func Compile(fn *ir.Func, worker int) {
 	}
 	pp := objw.NewProgs(fn, worker)
 	defer pp.Free()
-	fmt.Println("		START GEN MACHINE CODE")
+	// fmt.Println("		START GEN MACHINE CODE")
 	genssa(f, pp)
 	// Check frame size again.
 	// The check above included only the space needed for local variables.

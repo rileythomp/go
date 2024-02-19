@@ -194,7 +194,7 @@ func Main(archInit func(*ssagen.ArchInfo)) {
 	rttype.Init()
 
 	// Parse and typecheck input.
-	fmt.Println("START PARSE AND TYPECHECK INPUT")
+	// fmt.Println("START PARSE AND TYPECHECK INPUT")
 	noder.LoadPackage(flag.Args())
 
 	// As a convenience to users (toolchain maintainers, in particular),
@@ -209,7 +209,7 @@ func Main(archInit func(*ssagen.ArchInfo)) {
 	dwarfgen.RecordPackageName()
 
 	// Prepare for backend processing.
-	fmt.Println("START PREPARE FOR BACKEND PROCESSING")
+	// fmt.Println("START PREPARE FOR BACKEND PROCESSING")
 	ssagen.InitConfig()
 
 	// Apply coverage fixups, if applicable.
@@ -255,7 +255,7 @@ func Main(archInit func(*ssagen.ArchInfo)) {
 	// Large values are also moved off stack in escape analysis;
 	// because large values may contain pointers, it must happen early.
 	base.Timer.Start("fe", "escapes")
-	fmt.Println("START ESCAPE ANALYSIS")
+	// fmt.Println("START ESCAPE ANALYSIS")
 	escape.Funcs(typecheck.Target.Funcs)
 
 	loopvar.LogTransformations(transformed)
@@ -277,7 +277,7 @@ func Main(archInit func(*ssagen.ArchInfo)) {
 	// There are cyclic dependencies between all of these phases, so we
 	// need to iterate all of them until we reach a fixed point.
 	base.Timer.Start("be", "compilefuncs")
-	fmt.Println("START COMPILE TOP-LEVEL DECLARATIONS")
+	// fmt.Println("START COMPILE TOP-LEVEL DECLARATIONS")
 	for nextFunc, nextExtern := 0, 0; ; {
 		reflectdata.WriteRuntimeTypes()
 
@@ -304,7 +304,7 @@ func Main(archInit func(*ssagen.ArchInfo)) {
 		// as late as possible to maximize how much work we can batch and
 		// process concurrently.
 		if len(compilequeue) != 0 {
-			fmt.Println("	START COMPILE FUNCTIONS")
+			// fmt.Println("	START COMPILE FUNCTIONS")
 			compileFunctions()
 			continue
 		}

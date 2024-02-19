@@ -9,7 +9,6 @@ import (
 	"cmd/compile/internal/types"
 	"cmd/internal/obj"
 	"cmd/internal/src"
-	"fmt"
 	"go/constant"
 )
 
@@ -247,7 +246,7 @@ type UntilStmt struct {
 }
 
 func NewUntilStmt(pos src.XPos, init Node, cond, post Node, body []Node, distinctVars bool) *UntilStmt { // RILEY DIFFERS
-	fmt.Println("				6. IR/STMT.GO NewUntilStmt")
+	// fmt.Println("				6. IR/STMT.GO NewUntilStmt")
 	n := &UntilStmt{Cond: cond, Post: post} // RILEY DIFFERS
 	n.pos = pos
 	n.op = OUNTIL

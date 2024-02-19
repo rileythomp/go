@@ -94,7 +94,7 @@ func checkFiles(m posMap, noders []*noder) (*types2.Package, *types2.Info) {
 	// Check for anonymous interface cycles (#56103).
 	// TODO(gri) move this code into the type checkers (types2 and go/types)
 	var f cycleFinder
-	fmt.Println("				START INTERFACE CYCLE CHECK")
+	// fmt.Println("				START INTERFACE CYCLE CHECK")
 	for _, file := range files {
 		syntax.Inspect(file, func(n syntax.Node) bool {
 			if n, ok := n.(*syntax.InterfaceType); ok {
@@ -145,7 +145,7 @@ func checkFiles(m posMap, noders []*noder) (*types2.Package, *types2.Info) {
 	// If we do the rewrite in the back end, like between typecheck and walk,
 	// then the new implicit closure will not have a unified IR inline body,
 	// and bodyReaderFor will fail.
-	fmt.Println("				START REWRITE RANGE FUNC")
+	// fmt.Println("				START REWRITE RANGE FUNC")
 	rangefunc.Rewrite(pkg, info, files)
 
 	return pkg, info

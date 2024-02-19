@@ -552,7 +552,7 @@ func buildssa(fn *ir.Func, worker int) *ssa.Func {
 	}
 	s.zeroResults()
 	s.paramsToHeap()
-	fmt.Println("			START CONVERT AST BASED IR TO SSA BASED IR")
+	// fmt.Println("			START CONVERT AST BASED IR TO SSA BASED IR")
 	s.stmtList(fn.Body)
 
 	// fallthrough to exit
@@ -570,11 +570,11 @@ func buildssa(fn *ir.Func, worker int) *ssa.Func {
 
 	s.f.HTMLWriter.WritePhase("before insert phis", "before insert phis")
 
-	fmt.Println("			START INSERTING PHIS")
+	// fmt.Println("			START INSERTING PHIS")
 	s.insertPhis()
 
 	// Main call to ssa package to compile function
-	fmt.Println("			START SSA OPTIMIZATION PASSES")
+	// fmt.Println("			START SSA OPTIMIZATION PASSES")
 	ssa.Compile(s.f)
 
 	fe.AllocFrame(s.f)
@@ -1903,7 +1903,7 @@ func (s *state) stmt(n ir.Node) {
 		s.startBlock(bEnd)
 
 	case ir.OUNTIL:
-		fmt.Println("				11. SSAGEN/SSA.GO UNTIL SSA")
+		// fmt.Println("				11. SSAGEN/SSA.GO UNTIL SSA")
 		// OUNTIL: for Ninit; Left; Right { Nbody }
 		// cond (Left); body (Nbody); incr (Right)
 		n := n.(*ir.UntilStmt)

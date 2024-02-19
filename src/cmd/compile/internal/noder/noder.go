@@ -56,7 +56,7 @@ func LoadPackage(filenames []string) {
 				}
 				defer f.Close()
 
-				fmt.Println("	START PARSING FILE", filename)
+				// fmt.Println("	START PARSING FILE", filename)
 				p.file, _ = syntax.Parse(fbase, f, p.error, p.pragma, syntax.CheckBranches) // errors are tracked via p.error
 			}()
 		}
@@ -75,7 +75,7 @@ func LoadPackage(filenames []string) {
 	}
 	base.Timer.AddEvent(int64(lines), "lines")
 
-	fmt.Println("	START UNIFIED")
+	// fmt.Println("	START UNIFIED")
 	unified(m, noders)
 }
 

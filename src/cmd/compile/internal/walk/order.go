@@ -836,7 +836,7 @@ func (o *orderState) stmt(n ir.Node) {
 		o.popTemp(t)
 
 	case ir.OUNTIL:
-		fmt.Println("			9. WALK/ORDER.GO UNTIL CASE")
+		// fmt.Println("			9. WALK/ORDER.GO UNTIL CASE")
 		n := n.(*ir.UntilStmt)
 		t := o.markTemp()
 		n.Cond = o.exprInPlace(n.Cond)

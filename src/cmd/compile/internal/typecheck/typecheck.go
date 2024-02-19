@@ -551,7 +551,7 @@ func typecheck1(n ir.Node, top int) ir.Node {
 		return tcFor(n)
 
 	case ir.OUNTIL:
-		fmt.Println("				7. TYPECHECK/TYPECHECK.GO UNTIL CASE")
+		// fmt.Println("				7. TYPECHECK/TYPECHECK.GO UNTIL CASE")
 		n := n.(*ir.UntilStmt)
 		return tcUntil(n)
 

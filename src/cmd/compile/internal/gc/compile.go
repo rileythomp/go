@@ -5,7 +5,6 @@
 package gc
 
 import (
-	"fmt"
 	"internal/race"
 	"math/rand"
 	"sort"
@@ -106,7 +105,7 @@ func prepareFunc(fn *ir.Func) {
 	types.CalcSize(fn.Type())
 
 	ir.CurFunc = fn
-	fmt.Println("	START WALK")
+	// fmt.Println("	START WALK")
 	walk.Walk(fn)
 	ir.CurFunc = nil // enforce no further uses of CurFunc
 }
