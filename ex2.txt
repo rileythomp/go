@@ -1,0 +1,4 @@
+8 is divisible by 8
+12 is not divisble by 8
+16 is divisible by 8
+20 is not divisible by 8
