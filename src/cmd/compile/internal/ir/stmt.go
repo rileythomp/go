@@ -236,6 +236,40 @@ func NewForStmt(pos src.XPos, init Node, cond, post Node, body []Node, distinctV
 	return n
 }
 
+type FourStmt struct {
+	miniStmt
+	Label *types.Sym
+	Cond  Node
+	Post  Node
+	Body  Nodes
+}
+
+func NewFourStmt(pos src.XPos, init Node, cond, post Node, body []Node) *FourStmt {
+	n := &FourStmt{Cond: cond, Post: post}
+	n.pos = pos
+	n.op = OFOUR
+	if init != nil {
+		n.init = []Node{init}
+	}
+	n.Body = body
+	return n
+}
+
+type UnlessStmt struct {
+	miniStmt
+	Cond   Node
+	Body   Nodes
+	Likely bool // code layout hint
+}
+
+func NewUnlessStmt(pos src.XPos, cond Node, body []Node) *UnlessStmt {
+	n := &UnlessStmt{Cond: cond}
+	n.pos = pos
+	n.op = OUNLESS
+	n.Body = body
+	return n
+}
+
 // A GoDeferStmt is a go or defer statement: go Call / defer Call.
 //
 // The two opcodes use a single syntax because the implementations
